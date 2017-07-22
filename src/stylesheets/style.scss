@@ -1,0 +1,25 @@
+.default{
+    margin: 5px 5px 10px ;
+}
+
+.email{
+    display: inline-block;
+}
+
+.state {
+   float: left;
+   margin-bottom: 3em;
+   margin-right: 11em;
+}
+.address {
+    margin-bottom: 3em;
+}
+
+.name, .id, .dob, .gender, .skill, .skill-description, .edu-qualification, .edu-docs, .experience, .email, .password, .resume {
+  display: inline-block;
+  margin-right: 6em;
+  margin-bottom: 3em;
+}
+.skills{
+    margin-bottom: 3em; 
+}
