@@ -1,0 +1,1 @@
+export const EmailSchema = { type: "string", title: "EMAIL" }

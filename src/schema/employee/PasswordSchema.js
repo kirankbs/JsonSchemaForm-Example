@@ -1,0 +1,1 @@
+export const PasswordSchema = { type: "string", title: "PASSWORD" , minLength: 8}

@@ -1,0 +1,1 @@
+export const IdSchema = { type :"string", title: "Registration ID" }

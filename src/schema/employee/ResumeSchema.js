@@ -1,0 +1,1 @@
+export const ResumeSchema = {type: "string", title: "Resume"}

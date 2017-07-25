@@ -1,0 +1,1 @@
+export const ExperienceSchema = { type: "number", title: "Experience" }

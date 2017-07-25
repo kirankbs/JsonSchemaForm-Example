@@ -1,0 +1,1 @@
+export const AddressSchema = { type: "string", title: "PERMANENT ADDRESS"}

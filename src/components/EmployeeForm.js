@@ -1,66 +1,52 @@
 import { Component } from 'react'
 import Form from "react-jsonschema-form";
-import { CustomSchemaField } from '../schema/CustomSchemaField'
+import  * as EmployeeWidgets  from '../widgets/employee/EmployeeWidgets'
+import  * as EmployeeSchema  from '../schema/employee/EmployeeSchema'
 import '../stylesheets/style.scss'
 
-const fields = {
-  SchemaField: CustomSchemaField
-};
+
+const widgets = {
+  emailWidget: EmployeeWidgets.EmailWidget,
+  skillDescWidget: EmployeeWidgets.SkillDescriptionWidget,
+  gender: EmployeeWidgets.Gender
+}
 
 const schema = {
   title: "Employee Form",
   type: "object",
-  required: ["id"/*, "dob", "password", "skills", "email"*/],
+  required: ["id","password", "dob",  "skills", "email"],
   properties: {
-    id: { type :"string", title: "Registration ID" },    
-    name: { type :"string", title: "FULL NAME" },
-    gender: { type: "boolean", title: "GENDER", default: false },    
-    dob: { type:"string", title: "Date Of Birth" },
-    email: { type: "string", title: "EMAIL" },    
-    password: { type: "string", title: "PASSWORD" , minLength: 8},
-    education:{ type: "boolean", title: "Educational Qualification" },
-    educationalDocs: {
-      type: "array",
-      title: "Educational Documents",
-      items: {
-        type:"string", 
-        format:"data-url"
-      }
-    },
-    experience : { type: "number", title: "Experience" },
-    resume: {type: "string", title: "Resume"},    
-    skills: { 
-      type: "array", 
-      title: "SKILLS",
-      items: {
-        type: "object",
-        properties: {
-          skill: {type: "string", title: "skill"},
-          description: {type: "string"}
-        }
-      } 
-    },
-    state: { 
-      type: "number", 
-      title: "STATE",
-      enum:[1, 2, 3],
-      enumNames:["MH", "AP", "TN"] ,
-      default: 1
-    },    
-    address: { type: "string", title: "PERMANENT ADDRESS"},
+    id: EmployeeSchema.IdSchema,    
+    name: EmployeeSchema.NameSchema,
+    gender: EmployeeSchema.GenderSchema,    
+    dob: EmployeeSchema.DobSchema,
+    email: EmployeeSchema.EmailSchema,    
+    password: EmployeeSchema.PasswordSchema,
+    education: EmployeeSchema.EducationSchema,
+    educationalDocs: EmployeeSchema.EducationDocsSchema,
+    experience : EmployeeSchema.ExperienceSchema,
+    resume: EmployeeSchema.ResumeSchema,    
+    skills: EmployeeSchema.SkillsSchema,
+    state: EmployeeSchema.StateSchema,    
+    address: EmployeeSchema.AddressSchema
   }
 };
 
 
+
+
 const uiSchema = {
+  "ui:rootFieldId": "empform",
   id: {
     classNames: "id default"
   },  
   name: {
+    "ui:title": "Full Name",
+    "ui:placeholder":"enter full name", 
     classNames: "name default"
   },
   gender: {
-    "ui:widget": "radio",
+    "ui:widget":"gender",
     classNames: "gender default"
   },  
   dob: {
@@ -68,15 +54,16 @@ const uiSchema = {
     classNames: "dob default"
   },
   email: {
-    "ui:widget": "email",
+    "ui:widget": "emailWidget",
     classNames: "email default"
   },  
   password: {
     "ui:widget": "password",
+    "ui:help": "Hint: Make it strong!",
     classNames: "password default"
   },
   education: {
-    "ui:widget":"checkbox",
+    "ui:widget": "checkboxes",
     classNames: "edu-qualification default"
   },
   educationalDocs:{
@@ -94,10 +81,11 @@ const uiSchema = {
     classNames: "skills",
     items: {
       skill:{
+        "ui:autofocus": true,
         classNames: "skill"
       },
       description: {
-        "ui:widget":"textarea",
+        "ui:widget":"skillDescWidget",
         classNames: "skill-description"
       }
     }
@@ -117,14 +105,21 @@ const formData = {
 
 
 export const EmployeeForm = () => {
-  const onSubmit = ({formData}) => console.log("submitted")
+  const log = (type) => console.log.bind(console, type);
+  const onSubmit = ({formData}) => log("email is: ")
   const onChange = ({formData}) => console.log("changed")
   const onError = (errors) => console.log("error")
     return <Form  schema={schema}
                   uiSchema={uiSchema}
                   formData={formData}
-                  onChange={onChange}
-                  onSubmit={onSubmit}
+                  onChange={log("changed")}
+                  onSubmit={log("submit")}
                   onError={onError}
-                  />
+                  widgets={widgets}
+                  id="employee-form">
+                  <div>
+                    <button className="submit" type="submit">Submit</button>
+                    <button className="cancel" type="button">Cancel</button>
+                  </div>
+                  </Form>
 }

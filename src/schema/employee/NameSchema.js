@@ -1,0 +1,1 @@
+export const NameSchema = { type :"string", title: "Name" }
