@@ -4,17 +4,17 @@ import  * as EmployeeWidgets  from '../widgets/employee/EmployeeWidgets'
 import  * as EmployeeSchema  from '../schema/employee/EmployeeSchema'
 import '../stylesheets/style.scss'
 
-
 const widgets = {
   emailWidget: EmployeeWidgets.EmailWidget,
   skillDescWidget: EmployeeWidgets.SkillDescriptionWidget,
-  gender: EmployeeWidgets.Gender
+  gender: EmployeeWidgets.Gender,
+  skillProficiencyWidget: EmployeeWidgets.SkillProficiencyWidget
 }
 
 const schema = {
   title: "Employee Form",
   type: "object",
-  required: ["id","password", "dob",  "skills", "email"],
+  required: ["id",/*"password", "dob",  "skills", "email"*/],
   properties: {
     id: EmployeeSchema.IdSchema,    
     name: EmployeeSchema.NameSchema,
@@ -87,6 +87,10 @@ const uiSchema = {
       description: {
         "ui:widget":"skillDescWidget",
         classNames: "skill-description"
+      },
+      proficiency: {
+        "ui:widget": "skillProficiencyWidget",
+        classNames: "skill-proficiency"
       }
     }
   },
@@ -112,7 +116,7 @@ export const EmployeeForm = () => {
     return <Form  schema={schema}
                   uiSchema={uiSchema}
                   formData={formData}
-                  onChange={log("changed")}
+                  onChange={console.log("changed")}
                   onSubmit={log("submit")}
                   onError={onError}
                   widgets={widgets}
