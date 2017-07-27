@@ -9,29 +9,33 @@ const widgets = {
   emailWidget: EmployeeWidgets.EmailWidget,
   skillDescWidget: EmployeeWidgets.SkillDescriptionWidget,
   gender: EmployeeWidgets.Gender,
-  skillProficiencyWidget: EmployeeWidgets.SkillProficiencyWidget
+  skillProficiencyWidget: EmployeeWidgets.SkillProficiencyWidget,
+  managerWidget: EmployeeWidgets.ManagerWidget
 }
 
-const schema = {
-  title: "Employee Form",
-  type: "object",
-  required: ["id",/*"password", "dob",  "skills", "email"*/],
-  properties: {
-    id: EmployeeJSONSchema.IdSchema,
-    name: EmployeeJSONSchema.NameSchema,
-    gender: EmployeeJSONSchema.GenderSchema,
-    dob: EmployeeJSONSchema.DobSchema,
-    email: EmployeeJSONSchema.EmailSchema,
-    password: EmployeeJSONSchema.PasswordSchema,
-    education: EmployeeJSONSchema.EducationSchema,
-    educationalDocs: EmployeeJSONSchema.EducationDocsSchema,
-    experience : EmployeeJSONSchema.ExperienceSchema,
-    resume: EmployeeJSONSchema.ResumeSchema,
-    skills: EmployeeJSONSchema.SkillsSchema,
-    state: EmployeeJSONSchema.StateSchema,
-    address: EmployeeJSONSchema.AddressSchema
-  }
-};
+const schema = props => {
+    return {
+        title: "Employee Form",
+        type: "object",
+        required: ["id", "email"],
+        properties: {
+            id: EmployeeJSONSchema.IdSchema,
+            name: EmployeeJSONSchema.NameSchema,
+            gender: EmployeeJSONSchema.GenderSchema,
+            dob: EmployeeJSONSchema.DobSchema,
+            email: EmployeeJSONSchema.EmailSchema,
+            password: EmployeeJSONSchema.PasswordSchema,
+            education: EmployeeJSONSchema.EducationSchema,
+            educationalDocs: EmployeeJSONSchema.EducationDocsSchema,
+            experience : EmployeeJSONSchema.ExperienceSchema,
+            resume: EmployeeJSONSchema.ResumeSchema,
+            skills: EmployeeJSONSchema.SkillsSchema,
+            state: EmployeeJSONSchema.StateSchema,
+            address: EmployeeJSONSchema.AddressSchema,
+            manager: EmployeeJSONSchema.ManagerSchema(props.managers)
+        }
+    };
+}
 
 const uiSchema = {
   "ui:rootFieldId": "empform",
@@ -47,24 +51,26 @@ const uiSchema = {
   resume: EmployeeWidgetsSchema.resume,
   skills: EmployeeWidgetsSchema.skill,
   state: EmployeeWidgetsSchema.state,
-  address: EmployeeWidgetsSchema.address
+  address: EmployeeWidgetsSchema.address,
+  manager: EmployeeWidgetsSchema.manager
 };
 
 const formData = {
-  id: "11829"
 }
 
 
-export const EmployeeForm = () => {
-  const log = (type) => console.log.bind(console, type);
-  const onSubmit = ({formData}) => log("email is: ")
-  const onChange = ({formData}) => console.log("changed")
-  const onError = (errors) => console.log("error")
-    return <Form  schema={schema}
+const EmployeeForm = (props) => {
+  const onSubmit = ({formData}) => {
+      console.log("submitted  ==> ", formData)
+      props.addEmployee(formData)
+  }
+  const onChange = ({formData}) => console.log("changed ==> ", formData)
+  const onError = (errors) => console.log("error ==> ", errors)
+
+  return <Form  schema={schema(props)}
                   uiSchema={uiSchema}
                   formData={formData}
-                  onChange={console.log("changed")}
-                  onSubmit={log("submit")}
+                  onSubmit={onSubmit}
                   onError={onError}
                   widgets={widgets}
                   id="employee-form">
@@ -74,3 +80,5 @@ export const EmployeeForm = () => {
                   </div>
                   </Form>
 }
+
+export default EmployeeForm

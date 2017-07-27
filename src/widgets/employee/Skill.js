@@ -1,6 +1,6 @@
 import { SegmentedControl } from '../SegmentedControl'
 
-export const SkillDescriptionWidget = props => {
+const SkillDescriptionWidget = props => {
     const {options} = props;
     return (<div><textarea   value={props.value}
                 onChange={(event) => props.onChange(event.target.value)}
@@ -10,12 +10,13 @@ export const SkillDescriptionWidget = props => {
     </textarea>
     </div>)
 }
-
 SkillDescriptionWidget.defaultProps = {
 options: {
     rows: 5
   }
 }
+
+export default SkillDescriptionWidget
 
 
 export const SkillProficiencyWidget = (props) => {
@@ -29,5 +30,5 @@ export const SkillProficiencyWidget = (props) => {
         options={props.options.enumOptions.map( createSegment(props.value) )}
         onChange={value => props.onChange(value)}
         style={{ width: 300, color: '#00FA9A' }} // purple400
-    >{console.log(props)}</SegmentedControl>
+    />
 }

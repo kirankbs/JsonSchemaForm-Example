@@ -1,1 +1,2 @@
-export const DobSchema = { type:"string", title: "Date Of Birth" }
+const DobSchema = { type:"string", title: "Date Of Birth" }
+export default DobSchema

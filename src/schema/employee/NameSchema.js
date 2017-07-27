@@ -1,1 +1,3 @@
-export const NameSchema = { type :"string", title: "Name" }
+const NameSchema = { type :"string", title: "Name" }
+
+export default NameSchema

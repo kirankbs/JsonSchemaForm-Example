@@ -1,4 +1,4 @@
-export const SkillsSchema = { 
+const SkillsSchema = {
       type: "array", 
       title: "SKILLS",
       items: {
@@ -15,3 +15,4 @@ export const SkillsSchema = {
         }
       }
     }
+export default SkillsSchema

@@ -1,1 +1,2 @@
-export const AddressSchema = { type: "string", title: "PERMANENT ADDRESS"}
+const AddressSchema = { type: "string", title: "PERMANENT ADDRESS"}
+export default AddressSchema

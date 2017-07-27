@@ -1,1 +1,2 @@
-export const ExperienceSchema = { type: "number", title: "Experience" }
+const ExperienceSchema = { type: "number", title: "Experience" }
+export default ExperienceSchema

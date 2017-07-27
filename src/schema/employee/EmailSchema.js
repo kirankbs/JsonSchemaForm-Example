@@ -1,1 +1,2 @@
-export const EmailSchema = { type: "string", title: "EMAIL" }
+const EmailSchema = { type: "string", title: "EMAIL" }
+export default EmailSchema

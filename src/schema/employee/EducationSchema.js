@@ -1,4 +1,4 @@
-export const EducationSchema = { 
+const EducationSchema = {
       type: "array",
       minItems: 1, 
       title: "Educational Qualification",
@@ -8,6 +8,7 @@ export const EducationSchema = {
       },
       uniqueItems: true
     }
+export default EducationSchema
 export const EducationDocsSchema =   {
       type: "array",
       title: "Educational Documents",

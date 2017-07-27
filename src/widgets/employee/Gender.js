@@ -1,6 +1,6 @@
 import Toggle from 'react-toggle'
 
-export const Gender = (props) => (
+const Gender = (props) => (
 <Toggle
   id='cheese-status'
   icons={{
@@ -11,5 +11,6 @@ export const Gender = (props) => (
   onChange={e => props.onChange(e.target.checked)} />
 )
 
+export default Gender
 export const M = () => (<label style={{textAlign: "center"}}>M</label>)
 export const F = () => (<label style={{textAlign: "center"}}>F</label>)

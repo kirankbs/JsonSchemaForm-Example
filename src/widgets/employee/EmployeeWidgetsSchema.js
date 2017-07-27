@@ -75,3 +75,8 @@ export const address = {
     "ui:widget": "textarea",
     classNames: "address default"
 }
+
+export const manager = {
+    "ui:widget": "managerWidget",
+    classNames: "manager default"
+}

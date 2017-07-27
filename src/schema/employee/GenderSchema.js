@@ -1,1 +1,2 @@
-export const GenderSchema = { type: "boolean", title: "GENDER" }
+const GenderSchema = { type: "boolean", title: "GENDER" }
+export default GenderSchema
