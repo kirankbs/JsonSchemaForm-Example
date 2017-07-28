@@ -78,5 +78,6 @@ export const address = {
 
 export const manager = {
     "ui:widget": "managerWidget",
+    "ui:title": "Manager",
     classNames: "manager default"
 }

@@ -6,28 +6,17 @@ export class App extends Component {
     constructor(){
         super()
         this.state = {
-            employees: []
+            employees: [Employee({id: 1, name: "peter", email: "peter@gmail.com", manager: 1 })]
         }
     }
 
-    componentDidMount = (np, ns) => this.setState(prevState => ({
-            employees: [Employee({id: 1, name: "peter", email: "peter@gmail.com", manager: "peter" })]
-        }))
-
-    managers = _ => this.state.employees.map(e => { return {id: e.id, name: e.name}  } )
-
-    addEmployee = ({id, name, email, manager}) => {
-        console.log("Add Employee ===> ", manager)
-        this.setState(prevState => ({
+    addEmployee = ({id, name, email, manager}) => this.setState(prevState => ({
             employees: [...prevState.employees, Employee({id: id, name: name, email: email, manager: manager})]
         }))
-    }
 
-    newRegId = ({...untillLast, last}) => last.id + 1
-
-    render = () => {
+    render(){
         return(
-            <EmployeeForm   managers={this.managers()}
+            <EmployeeForm   employees={this.state.employees}
                             addEmployee={this.addEmployee}
                             regId={() => this.newRegId(this.state.employees)}/>
         )

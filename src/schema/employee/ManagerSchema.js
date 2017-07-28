@@ -1,11 +1,5 @@
-const ManagerSchema = (props) => {
-    const returnObject = {
+const ManagerSchema = {
         type: "number",
-        title: "Manager",
-        enum: props.map(p => p.id),
-        enumNames: props.map(p => p.name),
-        default: 1
-    };
-    return returnObject;
+        title: "name"
 }
 export default ManagerSchema

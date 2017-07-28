@@ -5,19 +5,22 @@ import  * as EmployeeWidgetsSchema  from '../widgets/employee/EmployeeWidgetsSch
 import  * as EmployeeJSONSchema  from '../schema/employee/EmployeeJSONSchema'
 import '../stylesheets/style.scss'
 
-const widgets = {
-  emailWidget: EmployeeWidgets.EmailWidget,
-  skillDescWidget: EmployeeWidgets.SkillDescriptionWidget,
-  gender: EmployeeWidgets.Gender,
-  skillProficiencyWidget: EmployeeWidgets.SkillProficiencyWidget,
-  managerWidget: EmployeeWidgets.ManagerWidget
+
+const widgets = props => {
+    console.log("widgets ==> ", props)
+    return {
+        emailWidget: EmployeeWidgets.EmailWidget,
+        skillDescWidget: EmployeeWidgets.SkillDescriptionWidget,
+        gender: EmployeeWidgets.Gender,
+        skillProficiencyWidget: EmployeeWidgets.SkillProficiencyWidget,
+        managerWidget: EmployeeWidgets.ManagerWidget(props.employees)
+    }
 }
 
-const schema = props => {
-    return {
+const schema = {
         title: "Employee Form",
         type: "object",
-        required: ["id", "email"],
+        required: ["id"],
         properties: {
             id: EmployeeJSONSchema.IdSchema,
             name: EmployeeJSONSchema.NameSchema,
@@ -32,9 +35,8 @@ const schema = props => {
             skills: EmployeeJSONSchema.SkillsSchema,
             state: EmployeeJSONSchema.StateSchema,
             address: EmployeeJSONSchema.AddressSchema,
-            manager: EmployeeJSONSchema.ManagerSchema(props.managers)
+            manager: EmployeeJSONSchema.ManagerSchema
         }
-    };
 }
 
 const uiSchema = {
@@ -55,30 +57,33 @@ const uiSchema = {
   manager: EmployeeWidgetsSchema.manager
 };
 
-const formData = {
+const formData = props => {
+    return {
+        manager: 0
+    }
 }
 
 
-const EmployeeForm = (props) => {
-  const onSubmit = ({formData}) => {
-      console.log("submitted  ==> ", formData)
-      props.addEmployee(formData)
-  }
-  const onChange = ({formData}) => console.log("changed ==> ", formData)
-  const onError = (errors) => console.log("error ==> ", errors)
+const  EmployeeForm = props =>  {
 
-  return <Form  schema={schema(props)}
-                  uiSchema={uiSchema}
-                  formData={formData}
-                  onSubmit={onSubmit}
-                  onError={onError}
-                  widgets={widgets}
-                  id="employee-form">
-                  <div>
-                    <button className="submit" type="submit">Submit</button>
-                    <button className="cancel" type="button">Cancel</button>
-                  </div>
-                  </Form>
-}
+    const onSubmit = ({formData}) => {
+        console.log("submitted  ==> ", formData)
+        props.addEmployee(formData)
+    }
+
+    return(
+        <Form   schema={schema}
+                     uiSchema={uiSchema}
+                     onSubmit={onSubmit}
+                     widgets={widgets(props)}
+                     id="employee-form"
+                        key={Math.random()}>
+            <div>
+                <button className="submit" type="submit">Submit</button>
+                <button className="cancel" type="button">Cancel</button>
+            </div>
+        </Form>
+        )
+    }
 
 export default EmployeeForm

@@ -10,18 +10,21 @@ var options = [
     { value: 5, label: "Sam" }
 ];
 
-const createOptions = option => { return {value: option.value, label: option.label} }
+const createOptions = schema => employee => {
+    return {value: employee.id, label: employee[schema.title]}
+}
+
 const createSelectedOption = val => { return {id: val.value, name: val.label }}
 
-const ManagerWidget = (props) => (
-    (console.log("manager widger ==> ", props)),
-    <Select
+
+const ManagerWidget =  employees=> props => {
+    console.log("manager widget =>>>>>", employees)
+    return <Select
         name="form-field-name"
         value={props.value}
-        options={props.options.enumOptions.map(createOptions)}
-        onChange={createSelectedOption}
+        options={employees.map(createOptions(props.schema))}
+        onChange={v => props.onChange(v.value)}
     />
-
-)
+}
 
 export default ManagerWidget
