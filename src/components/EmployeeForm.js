@@ -13,7 +13,8 @@ const widgets = props => {
         skillDescWidget: EmployeeWidgets.SkillDescriptionWidget,
         gender: EmployeeWidgets.Gender,
         skillProficiencyWidget: EmployeeWidgets.SkillProficiencyWidget,
-        managerWidget: EmployeeWidgets.ManagerWidget(props.employees)
+        managerWidget: EmployeeWidgets.ManagerWidget(props.employees),
+        addressWidget: EmployeeWidgets.AddressWidget
     }
 }
 

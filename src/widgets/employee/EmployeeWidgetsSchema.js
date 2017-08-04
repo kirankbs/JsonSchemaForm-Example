@@ -72,7 +72,7 @@ export const state = {
 }
 
 export const address = {
-    "ui:widget": "textarea",
+    "ui:widget": "addressWidget",
     classNames: "address default"
 }
 

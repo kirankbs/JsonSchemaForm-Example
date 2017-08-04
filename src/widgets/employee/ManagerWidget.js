@@ -2,29 +2,26 @@ import Select from 'react-select'
 import '../../stylesheets/react-select.scss'
 
 
-var options = [
-    { value: 1, label: "Jhon" },
-    { value: 2, label: "Peter" },
-    { value: 3, label: "Maria" },
-    { value: 4, label: "Alex" },
-    { value: 5, label: "Sam" }
-];
-
-const createOptions = schema => employee => {
+/*const createOptions = schema => employee => {
     return {value: employee.id, label: employee[schema.title]}
-}
+}*/
 
-const createSelectedOption = val => { return {id: val.value, name: val.label }}
+const createOptions = schema => employee => <option key={ employee.id } value={ employee.id }>{employee.name}</option>
+
+const defaultOptions = schema => schema.defaultEnums.map(e => ({value: e, label: e } ))
+
+const createSelectedOption = val => ({id: val.value, name: val.label })
+
+const handleChange = props => v => {
+    v && props.onChange(v.target.value)
+}
 
 
 const ManagerWidget =  employees=> props => {
-    console.log("manager widget =>>>>>", employees)
-    return <Select
-        name="form-field-name"
-        value={props.value}
-        options={employees.map(createOptions(props.schema))}
-        onChange={v => props.onChange(v.value)}
-    />
+    console.log("manager widget schema =>>>>>", props.schema)
+    return <select value={ props.value } onChange={handleChange(props)}>
+        {[<option value="" key="">Select...</option>, ...employees.map(createOptions(props.schema))]}
+    </select>
 }
 
 export default ManagerWidget
