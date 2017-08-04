@@ -1,4 +1,4 @@
-import TextareaAutosize from 'react-autosize-textarea';
+import Textarea from 'react-textarea-autosize';
 
 const AddressWidget = props => {
 
@@ -10,7 +10,7 @@ const AddressWidget = props => {
         fontSize: 15
     }
 
-    return <TextareaAutosize
+    return <Textarea
         style={textareaStyle}
         onResize={(e) => {}}
         defaultValue={'Add Address'}
