@@ -3,7 +3,7 @@ import axios from "axios";
 import '../../stylesheets/AutoSuggest.css'
 import Autosuggest from "react-autosuggest"
 
-class AutoSearchWidgetRemote extends Component {
+class AutoSearchWidgetRemote1 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -69,4 +69,4 @@ class AutoSearchWidgetRemote extends Component {
     }
 }
 
-export default AutoSearchWidgetRemote
+export default AutoSearchWidgetRemote1
