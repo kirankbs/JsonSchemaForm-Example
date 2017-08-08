@@ -12,7 +12,6 @@ const AddressWidget = props => {
 
     return <Textarea
         style={textareaStyle}
-        onResize={(e) => {}}
         defaultValue={'Add Address'}
     />
 

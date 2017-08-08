@@ -3,6 +3,8 @@ import EmailWidget from "./Email"
 import Gender from "./Gender"
 import ManagerWidget from "./ManagerWidget"
 import AddressWidget from "./AddressWidget"
+import DropDownWidgetRemote from "./DropDownWidgetRemote"
+import AutoSearchWidgetRemote from "./AutoSearchWidgetRemote";
 
 export{
     SkillDescriptionWidget,
@@ -10,5 +12,7 @@ export{
     Gender,
     SkillProficiencyWidget,
     ManagerWidget,
-    AddressWidget
+    AddressWidget,
+    AutoSearchWidgetRemote,
+    DropDownWidgetRemote
 }

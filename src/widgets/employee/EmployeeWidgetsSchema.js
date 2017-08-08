@@ -53,6 +53,10 @@ export const skill = {
     classNames: "skills",
     items: {
         skill:{
+            "ui:widget": "skillWidget",
+            "ui:options":{
+                "endpoint":"http://localhost:9000/search"
+            },
             "ui:autofocus": true,
             classNames: "skill"
         },
@@ -68,6 +72,10 @@ export const skill = {
 }
 
 export const state = {
+    "ui:widget": "stateWidget",
+    "ui:options": {
+      "endpoint":"http://localhost:9000/states"
+    },
     classNames: "state default"
 }
 

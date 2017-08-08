@@ -4,7 +4,8 @@ const EducationSchema = {
       title: "Educational Qualification",
       items:{
         type: "string",
-        enum: ["Bachelor's", "master's", "Ph.D"]
+        enum: ["BE", "ME", "Ph.D"],
+        enumNames: ["Bachelor's", "Master's", "Ph.D"]
       },
       uniqueItems: true
     }

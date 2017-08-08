@@ -1,20 +1,20 @@
-import { Component } from 'react'
 import Form from "react-jsonschema-form";
-import  * as EmployeeWidgets  from '../widgets/employee/EmployeeWidgets'
-import  * as EmployeeWidgetsSchema  from '../widgets/employee/EmployeeWidgetsSchema'
-import  * as EmployeeJSONSchema  from '../schema/employee/EmployeeJSONSchema'
+import * as EmployeeWidgets from '../widgets/employee/EmployeeWidgets'
+import * as EmployeeWidgetsSchema from '../widgets/employee/EmployeeWidgetsSchema'
+import * as EmployeeJSONSchema from '../schema/employee/EmployeeJSONSchema'
 import '../stylesheets/style.scss'
 
 
 const widgets = props => {
-    console.log("widgets ==> ", props)
     return {
         emailWidget: EmployeeWidgets.EmailWidget,
         skillDescWidget: EmployeeWidgets.SkillDescriptionWidget,
         gender: EmployeeWidgets.Gender,
         skillProficiencyWidget: EmployeeWidgets.SkillProficiencyWidget,
         managerWidget: EmployeeWidgets.ManagerWidget(props.employees),
-        addressWidget: EmployeeWidgets.AddressWidget
+        addressWidget: EmployeeWidgets.AddressWidget,
+        skillWidget: EmployeeWidgets.AutoSearchWidgetRemote,
+        stateWidget: EmployeeWidgets.DropDownWidgetRemote
     }
 }
 
@@ -68,7 +68,7 @@ const formData = props => {
 const  EmployeeForm = props =>  {
 
     const onSubmit = ({formData}) => {
-        console.log("submitted  ==> ", formData)
+        console.log("Submitted ==> ", formData)
         props.addEmployee(formData)
     }
 

@@ -4,7 +4,7 @@ const SkillsSchema = {
       items: {
         type: "object",
         properties: {
-          skill: {type: "string", title: "skill"},
+          skill: {type: "string", title: "skill", default:""},
           description: {type: "string"},
           proficiency: {
             type: "number", 

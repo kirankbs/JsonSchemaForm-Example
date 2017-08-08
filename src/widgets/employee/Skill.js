@@ -1,4 +1,4 @@
-import { SegmentedControl } from '../SegmentedControl'
+import {SegmentedControl} from '../SegmentedControl'
 
 const SkillDescriptionWidget = props => {
     const {options} = props;
@@ -10,6 +10,7 @@ const SkillDescriptionWidget = props => {
     </textarea>
     </div>)
 }
+
 SkillDescriptionWidget.defaultProps = {
 options: {
     rows: 5
@@ -19,7 +20,7 @@ options: {
 export default SkillDescriptionWidget
 
 
-export const SkillProficiencyWidget = (props) => {
+const SkillProficiencyWidget = props => {
 
     const createSegment = defaultValue => ({label, value}) => {
         return {label: label, value: value, default: value == defaultValue}
@@ -32,3 +33,5 @@ export const SkillProficiencyWidget = (props) => {
         style={{ width: 300, color: '#00FA9A' }} // purple400
     />
 }
+
+export { SkillProficiencyWidget}

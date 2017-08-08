@@ -16,6 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
+    "axios": "^0.16.2",
     "babel-cli": "^6.24.1",
     "babel-loader": "^6.2.5",
     "babel-preset-latest": "^6.24.1",
@@ -27,6 +28,7 @@
     "lodash": "^4.14.1",
     "node-sass": "^4.5.3",
     "npm": "^5.2.0",
+    "react-autosuggest": "^9.3.2",
     "react-lumberjack": "^2.0.0",
     "react-scripts": "^0.2.1",
     "react-select": "^1.0.0-rc.5",

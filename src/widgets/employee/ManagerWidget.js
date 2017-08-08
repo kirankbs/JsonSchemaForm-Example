@@ -18,7 +18,6 @@ const handleChange = props => v => {
 
 
 const ManagerWidget =  employees=> props => {
-    console.log("manager widget schema =>>>>>", props.schema)
     return <select value={ props.value } onChange={handleChange(props)}>
         {[<option value="" key="">Select...</option>, ...employees.map(createOptions(props.schema))]}
     </select>
