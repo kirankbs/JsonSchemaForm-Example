@@ -5,6 +5,7 @@ import ManagerWidget from "./ManagerWidget"
 import AddressWidget from "./AddressWidget"
 import DropDownWidgetRemote from "./DropDownWidgetRemote"
 import AutoSearchWidgetRemote from "./AutoSearchWidgetRemote";
+import InlineValidation from "./InlineValidation"
 
 export{
     SkillDescriptionWidget,
@@ -14,5 +15,6 @@ export{
     ManagerWidget,
     AddressWidget,
     AutoSearchWidgetRemote,
-    DropDownWidgetRemote
+    DropDownWidgetRemote,
+    InlineValidation
 }

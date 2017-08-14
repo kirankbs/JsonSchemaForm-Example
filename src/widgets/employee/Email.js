@@ -3,7 +3,8 @@ const EmailWidget = props => (
         className="email-input"
         value={props.value}
         required={props.required}
-        onChange={(event) => props.onChange(event.target.value)} />
+        onChange={(event) => props.onChange(event.target.value)}
+        onBlur={event => props.onBlur(props.id, event.target.value)} />
 )
 
 export default EmailWidget

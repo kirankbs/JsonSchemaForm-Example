@@ -13,6 +13,7 @@ const AddressWidget = props => {
     return <Textarea
         style={textareaStyle}
         defaultValue={'Add Address'}
+        onBlur={v => props.onBlur(props.id, v.target.value)}
     />
 
 }

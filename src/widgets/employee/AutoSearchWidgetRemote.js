@@ -52,7 +52,8 @@ class AutoSearchWidgetRemote extends Component {
     inputProps = (value) => ({
         placeholder: "Type ...",
         value,
-        onChange: this.onChange
+        onChange: this.onChange,
+        onBlur: v => this.props.onBlur(this.props.id, this.state.value)
     })
 
     render() {

@@ -3,6 +3,7 @@ import * as EmployeeWidgets from '../widgets/employee/EmployeeWidgets'
 import * as EmployeeWidgetsSchema from '../widgets/employee/EmployeeWidgetsSchema'
 import * as EmployeeJSONSchema from '../schema/employee/EmployeeJSONSchema'
 import '../stylesheets/style.scss'
+import {Component } from 'react'
 
 
 const widgets = props => {
@@ -21,7 +22,7 @@ const widgets = props => {
 const schema = {
         title: "Employee Form",
         type: "object",
-        required: ["id"],
+        required: ["id", "email","name"],
         properties: {
             id: EmployeeJSONSchema.IdSchema,
             name: EmployeeJSONSchema.NameSchema,
@@ -65,26 +66,53 @@ const formData = props => {
 }
 
 
-const  EmployeeForm = props =>  {
+class EmployeeForm extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            form: null,
+            validationError: [],
+            formData:{},
+            uiSchema: uiSchema
+        }
+    }
 
-    const onSubmit = ({formData}) => {
+
+    onSubmit = ({formData}) => {
         console.log("Submitted ==> ", formData)
         props.addEmployee(formData)
     }
 
-    return(
-        <Form   schema={schema}
-                     uiSchema={uiSchema}
-                     onSubmit={onSubmit}
-                     widgets={widgets(props)}
-                     id="employee-form"
-                        key={Math.random()}>
-            <div>
-                <button className="submit" type="submit">Submit</button>
-                <button className="cancel" type="button">Cancel</button>
-            </div>
-        </Form>
+    onBlur = (id, value) => {
+        const {newErrors, newUISchema } =
+            EmployeeWidgets.InlineValidation(id)(value)(this.state.form)(this.state.validationError)(this.state.uiSchema)
+
+        this.setState(prevState => ({
+            validationError: newErrors,
+            formData: prevState.form.state.formData,
+            uiSchema: newUISchema
+        }))
+    }
+
+    render() {
+        return (
+            <Form schema={schema}
+                  uiSchema={this.state.uiSchema}
+                  onSubmit={this.onSubmit}
+                  formData={this.state.formData}
+                  onChange={this.onChange}
+                  widgets={widgets(this.props)}
+                  onBlur={this.onBlur}
+                  id="employee-form"
+                  key={Math.random()}
+                  ref={form => this.state.form = form }>
+                <div>
+                    <button className="submit" type="submit">Submit</button>
+                    <button className="cancel" type="button">Cancel</button>
+                </div>
+            </Form>
         )
     }
+}
 
 export default EmployeeForm
